@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            background: #2C2547;
+        }
+        .container{
+            display: block;
+            width: 250px;
+            height: 400px;
+            margin: 200px auto;
+            position: relative;
+        }
+        .container input{
+            width: 100%;
+            padding: 7px 0;
+            border: none;
+            border-bottom: 1px solid #C7C3CE;
+            text-align: center;
+            outline-style: none;
+            position: absolute;
+            top: 10%;
+            left: 50%;  
+            transform: translate(-50%, -20%);
+        }
+        .container .numbers{
+            width: 100%;
+            height: 300px;
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            /* align-items: center; */
+            align-content: space-around;
+        }
+        .container .numbers .number-block,.times-block,.check-block{
+           width: 70px;
+           height: 60px;
+            background: #1F1E40;
+            text-align: center; 
+            line-height: 60px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-weight:900;
+            color: #6DACC1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input type="password" placeholder='Password' min="8" max="16">
+        <div class="numbers">
+            <div class="number-block">1</div>
+            <div class="number-block">2</div>
+            <div class="number-block">3</div>
+            <div class="number-block">4</div>
+            <div class="number-block">5</div>
+            <div class="number-block">6</div>
+            <div class="number-block">7</div>
+            <div class="number-block">8</div>
+            <div class="number-block">9</div>
+            <div class="times-block">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div class="number-block">0</div>
+            <div class="check-block">
+                <i class="fa fa-check" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    let numbers = document.querySelectorAll('.number-block');
+    numbers.forEach(number => {
+        number.addEventListener('click', function () {
+            let numberValue = number.innerHTML;
+            myFunction(numberValue);
+            function myFunction(numberValue) {
+                document.querySelector('input').value += numberValue;
+            }
+        })
+    })
+
+    document.getElementsByClassName('times-block')[0].addEventListener('click', function () {
+        let input = document.querySelector('input').value;
+        document.querySelector('input').value = input.substr(0, input.length - 1);
+        console.log(input)
+
+    })
+
+    document.getElementsByClassName('check-block')[0].addEventListener('click', function () {
+        document.querySelector('input').value = '';
+    })
+</script>
+
+</html>
